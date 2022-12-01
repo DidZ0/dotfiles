@@ -1,30 +1,26 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.03";
+  description = "Bomal Nixamer";
 
-  outputs = { self, nixpkgs }: {
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
 
-    nixosConfigurations.container = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, ... }@inputs: {
+    nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules =
-        [ ({ pkgs, ... }: {
-            boot.isContainer = true;
-
-            # Let 'nixos-version --json' know about the Git revision
-            # of this flake.
-            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-
-            # Network configuration.
-            networking.useDHCP = false;
-            networking.firewall.allowedTCPPorts = [ 80 ];
-
-            # Enable a web server.
-            services.httpd = {
-              enable = true;
-              adminAddr = "morty@example.org";
-            };
-          })
-        ];
+      modules = [
+        ./configuration.nix
+      ];
     };
 
+    # You can define many systems in one Flake file.
+    # NixOS will choose one based on your hostname.
+    #
+    # nixosConfigurations."nixos2" = nixpkgs.lib.nixosSystem {
+    #   system = "x86_64-linux";
+    #   modules = [
+    #     ./configuration2.nix
+    #   ];
+    # };
   };
 }
