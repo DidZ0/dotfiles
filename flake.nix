@@ -3,24 +3,35 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-      ];
+  outputs = { nixpkgs, home-manager, ... }: 
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config = { allowUnfree = true; };  
+    };
+    lib = nixpkgs.lib;
+
+  in {
+    homeConfigurations = {
+      "bomal" = home-manager.lib.homeManagerConfiguration {
+	inherit pkgs;
+        modules = [ ./home.nix ];
+      };
     };
 
-    # You can define many systems in one Flake file.
-    # NixOS will choose one based on your hostname.
-    #
-    # nixosConfigurations."nixos2" = nixpkgs.lib.nixosSystem {
-    #   system = "x86_64-linux";
-    #   modules = [
-    #     ./configuration2.nix
-    #   ];
-    # };
+    nixosConfigurations = {
+      nixlab = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./configuration.nix
+        ];
+      };
+    };
+
   };
 }
