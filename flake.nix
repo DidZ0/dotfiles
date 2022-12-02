@@ -17,18 +17,28 @@
     lib = nixpkgs.lib;
 
   in {
+
     homeConfigurations = {
       "bomal" = home-manager.lib.homeManagerConfiguration {
 	inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [ ./users/bomal/home.nix ];
       };
     };
 
     nixosConfigurations = {
-      nixlab = lib.nixosSystem {
+      proxmox = lib.nixosSystem {
         inherit system;
         modules = [
-          ./configuration.nix
+          ./config.nix
+          ./hosts/proxmox/proxmox.nix
+        ];
+      };
+
+      laptop = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./config.nix
+          ./hosts/laptop/laptop.nix
         ];
       };
     };
