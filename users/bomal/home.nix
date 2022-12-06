@@ -7,6 +7,9 @@
     neovim
     htop
     neofetch
+    firefox
+    vscode
+    anydesk
   ];
 
   imports = [

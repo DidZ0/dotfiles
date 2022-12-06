@@ -13,6 +13,16 @@
   # SERVICES 
   services.openssh.enable = true;
 
+  # XSERVER
+  services.xserver.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  #services.xrdp.enable = true;
+  #services.xrdp.defaultWindowManager = "startplasma-x11";
+  #networking.firewall.allowedTCPPorts = [ 3389 ];
+  #services.teamviewer.enable = true;
+  #services.x2goserver.enable = true;
+
   # TIMEZONE
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.utf8";
@@ -28,9 +38,10 @@
     LC_TIME = "fr_FR.utf8";
   };
 
-  # FLAKES 
+  # EXTRA 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
 
+  # VERSION
   system.stateVersion = "22.05";
-
 }
