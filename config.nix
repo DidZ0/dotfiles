@@ -1,8 +1,9 @@
-########################
-## SYSTEM-WIDE CONFIG ##
-########################
+###################################
+## SYSTEM-WIDE CONFIG / SERVICES ##
+###################################
 
 { config, pkgs, ... }:
+
 {
   # USERS
   users.users.bomal = {
@@ -28,19 +29,18 @@
     pulse.enable = true;
   };
 
-  # NFS
-  services = {
-    rpcbind.enable = true;
-    nfs.server.enable = true;
-  };
-  fileSystems."/mnt/truenas" = {
-    device = "192.168.193.103:/mnt/pool/storage/bomal";
-    fsType = "nfs";
-  };
-
   # BLUETOOTH
   hardware.bluetooth.enable = true;
 
+  # SSH
+  services.openssh.enable = true
+
+  # VPN / ZEROTIER
+  services.mullvad-vpn.enable = true;
+  services.zerotierone = {
+    enable = true;
+    joinNetworks = [ "db64858fed775e61" ];
+  };
 
   # TIMEZONE
   time.timeZone = "Europe/Paris";
