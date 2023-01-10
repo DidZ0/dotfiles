@@ -1,7 +1,9 @@
+########################
+## SYSTEM-WIDE CONFIG ##
+########################
+
 { config, pkgs, ... }:
-
 {
-
   # USERS
   users.users.bomal = {
     isNormalUser = true;
@@ -10,18 +12,35 @@
     packages = with pkgs; [];
   };
 
-  # SERVICES 
-  services.openssh.enable = true;
-
   # XSERVER
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  #services.xrdp.enable = true;
-  #services.xrdp.defaultWindowManager = "startplasma-x11";
-  #networking.firewall.allowedTCPPorts = [ 3389 ];
-  #services.teamviewer.enable = true;
-  #services.x2goserver.enable = true;
+  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.windowManager.i3.enable = true;
+  services.xserver.displayManager.defaultSession = "none+i3";
+  services.xserver.libinput.enable = true;
+
+  # PIPEWIRE
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # NFS
+  services = {
+    rpcbind.enable = true;
+    nfs.server.enable = true;
+  };
+  fileSystems."/mnt/truenas" = {
+    device = "192.168.193.103:/mnt/pool/storage/bomal";
+    fsType = "nfs";
+  };
+
+  # BLUETOOTH
+  hardware.bluetooth.enable = true;
+
 
   # TIMEZONE
   time.timeZone = "Europe/Paris";

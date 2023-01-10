@@ -1,6 +1,7 @@
 {
-  description = "Bomal Nixamer";
+  description = "Bomal Nixamer Flake";
 
+  # REQUIRED INPUTS
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
@@ -18,12 +19,17 @@
 
   in {
 
+    # HOME-MANAGER CONFIG(s)
+
     homeConfigurations = {
       "bomal" = home-manager.lib.homeManagerConfiguration {
 	inherit pkgs;
         modules = [ ./users/bomal/home.nix ];
       };
     };
+
+    
+    # SYSTEM-CONFIGURATION(s)
 
     nixosConfigurations = {
       proxmox = lib.nixosSystem {

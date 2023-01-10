@@ -1,20 +1,35 @@
-{ pkgs, ... }: {
+##############################
+## USER PACKAGES / DOTFILES ##
+##############################
+
+{ config, pkgs, ... }: {
+  
   programs.home-manager.enable = true;
   home.username = "bomal";
   home.homeDirectory = "/home/bomal";
 
+  # SIMPLE PACKAGES
   home.packages = with pkgs; [
+    feh
+    vlc
+    pulsemixer
     neovim
     htop
     neofetch
-    firefox
+    chromium
     vscode
-    anydesk
+    rofi
+    alacritty
+    networkmanagerapplet
   ];
 
+  # CUSTOM PACKAGES / DOTFILES
   imports = [
-    ./programs/git.nix
+    ./programs/git/git.nix
+    ./programs/i3/i3.nix
+    ./programs/picom/picom.nix
   ];
 
+  # VERSION
   home.stateVersion = "22.11";
 }
