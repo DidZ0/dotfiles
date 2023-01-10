@@ -10,25 +10,11 @@
 
   # SIMPLE PACKAGES
   home.packages = with pkgs; [
-    feh
-    vlc
-    pulsemixer
     neovim
     htop
     neofetch
-    chromium
-    vscode
-    rofi
-    alacritty
-    networkmanagerapplet
   ];
 
-  # CUSTOM PACKAGES / DOTFILES
-  imports = [
-    ./programs/git/git.nix
-    ./programs/i3/i3.nix
-    ./programs/picom/picom.nix
-  ];
 
   # VERSION
   home.stateVersion = "22.11";

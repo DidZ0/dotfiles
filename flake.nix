@@ -32,19 +32,11 @@
     # SYSTEM-CONFIGURATION(s)
 
     nixosConfigurations = {
-      proxmox = lib.nixosSystem {
+      system = lib.nixosSystem {
         inherit system;
         modules = [
           ./config.nix
-          ./hosts/proxmox/proxmox.nix
-        ];
-      };
-
-      laptop = lib.nixosSystem {
-        inherit system;
-        modules = [
-          ./config.nix
-          ./hosts/laptop/laptop.nix
+          ./hosts/system/system.nix
         ];
       };
     };

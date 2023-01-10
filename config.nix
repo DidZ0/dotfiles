@@ -13,13 +13,6 @@
     packages = with pkgs; [];
   };
 
-  # XSERVER
-  services.xserver.enable = true;
-  services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.displayManager.defaultSession = "none+i3";
-  services.xserver.libinput.enable = true;
-
   # PIPEWIRE
   security.rtkit.enable = true;
   services.pipewire = {
@@ -34,13 +27,6 @@
 
   # SSH
   services.openssh.enable = true
-
-  # VPN / ZEROTIER
-  services.mullvad-vpn.enable = true;
-  services.zerotierone = {
-    enable = true;
-    joinNetworks = [ "db64858fed775e61" ];
-  };
 
   # TIMEZONE
   time.timeZone = "Europe/Paris";
