@@ -28,6 +28,7 @@
     ./programs/git/git.nix
     ./programs/i3/i3.nix
     ./programs/picom/picom.nix
+    ./programs/polybar/polybar.nix
   ];
 
   # VERSION

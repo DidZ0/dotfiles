@@ -1,13 +1,17 @@
-set $mod Mod1
-
-font pango:monospace 12 
-
 # AUTOSTART
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec_always --no-startup-id feh --bg-scale ~/.config/dotfiles/users/bomal/assets/wallpaper.jpg
+exec_always --no-startup-id polybar -c ~/.config/dotfiles/users/bomal/programs/polybar/coffee coffee 
 
+# CONFIG
+set $mod Mod1
+font pango:monospace 12 
+gaps inner 6
+gaps outer 6
+default_border pixel 1
+default_floating_border pixel 1
 
 # KEYBINDINGS
 floating_modifier $mod
@@ -93,11 +97,4 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# CONFIG
-default_border pixel 1
-default_floating_border pixel 1
 
-bar {
-        # status_command i3status
-	position top
-}

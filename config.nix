@@ -16,6 +16,7 @@
   # XSERVER
   services.xserver.enable = true;
   services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.windowManager.i3.package = pkgs.i3-gaps;
   services.xserver.windowManager.i3.enable = true;
   services.xserver.displayManager.defaultSession = "none+i3";
   services.xserver.libinput.enable = true;
@@ -33,7 +34,7 @@
   hardware.bluetooth.enable = true;
 
   # SSH
-  services.openssh.enable = true
+  services.openssh.enable = true;
 
   # VPN / ZEROTIER
   services.mullvad-vpn.enable = true;
