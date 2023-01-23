@@ -6,9 +6,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { nixpkgs, home-manager, ... }: 
+  outputs = { nixpkgs, hyprland, home-manager, ... }: 
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -24,7 +25,9 @@
     homeConfigurations = {
       "bomal" = home-manager.lib.homeManagerConfiguration {
 	inherit pkgs;
-        modules = [ ./users/bomal/home.nix ];
+        modules = [
+	  ./users/bomal/home.nix
+	];
       };
     };
 
@@ -37,7 +40,7 @@
         modules = [
           ./config.nix
           ./hosts/proxmox/proxmox.nix
-        ];
+	];
       };
 
       laptop = lib.nixosSystem {
@@ -45,6 +48,8 @@
         modules = [
           ./config.nix
           ./hosts/laptop/laptop.nix
+	  hyprland.nixosModules.default
+          {programs.hyprland.enable = true;}
         ];
       };
     };

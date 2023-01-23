@@ -10,17 +10,19 @@
 
   # SIMPLE PACKAGES
   home.packages = with pkgs; [
-    feh
-    vlc
+    hyprpaper
+    mpv
     pulsemixer
     neovim
     htop
     neofetch
     chromium
     vscode
-    rofi
-    alacritty
     networkmanagerapplet
+    waybar
+    signal-desktop
+    rofi
+    logseq
   ];
 
   # CUSTOM PACKAGES / DOTFILES
@@ -29,6 +31,8 @@
     ./programs/i3/i3.nix
     ./programs/picom/picom.nix
     ./programs/polybar/polybar.nix
+    ./programs/alacritty/alacritty.nix
+    ./programs/fuzzel/fuzzel.nix
   ];
 
   # VERSION

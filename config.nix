@@ -18,7 +18,6 @@
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.windowManager.i3.package = pkgs.i3-gaps;
   services.xserver.windowManager.i3.enable = true;
-  services.xserver.displayManager.defaultSession = "none+i3";
   services.xserver.libinput.enable = true;
 
   # PIPEWIRE
@@ -38,10 +37,7 @@
 
   # VPN / ZEROTIER
   services.mullvad-vpn.enable = true;
-  services.zerotierone = {
-    enable = true;
-    joinNetworks = [ "db64858fed775e61" ];
-  };
+  services.tailscale.enable = true;
 
   # TIMEZONE
   time.timeZone = "Europe/Paris";
