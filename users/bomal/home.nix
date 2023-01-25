@@ -11,7 +11,6 @@
   # SIMPLE PACKAGES
   home.packages = with pkgs; [
     hyprpaper
-    mpv
     pulsemixer
     neovim
     htop
@@ -21,8 +20,9 @@
     networkmanagerapplet
     waybar
     signal-desktop
-    rofi
+    wofi
     logseq
+    nodejs
   ];
 
   # CUSTOM PACKAGES / DOTFILES

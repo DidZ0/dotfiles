@@ -15,13 +15,14 @@
 
   # XSERVER
   services.xserver.enable = true;
-  services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.windowManager.i3.package = pkgs.i3-gaps;
-  services.xserver.windowManager.i3.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.defaultSession = "hyprland";
+  services.xserver.desktopManager.gnome.enable = true;
   services.xserver.libinput.enable = true;
 
   # PIPEWIRE
   security.rtkit.enable = true;
+  hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
