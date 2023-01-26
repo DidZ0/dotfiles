@@ -25,6 +25,17 @@
     nodejs
   ];
 
+
+  nixpkgs.overlays = [
+    (self: super: {
+      waybar = super.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
+    })
+  ];
+
+  programs.waybar.enable = true;
+
   # CUSTOM PACKAGES / DOTFILES
   imports = [
     ./programs/git/git.nix

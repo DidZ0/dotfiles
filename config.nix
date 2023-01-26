@@ -9,7 +9,7 @@
   users.users.bomal = {
     isNormalUser = true;
     description = "Yan Imensar";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "video" "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
 
@@ -54,6 +54,11 @@
     LC_TELEPHONE = "fr_FR.utf8";
     LC_TIME = "fr_FR.utf8";
   };
+
+  fonts.fonts = with pkgs; [
+    font-awesome
+    (nerdfonts.override { fonts = [ "FiraCode" "FantasqueSansMono" ]; })
+  ];
 
   # EXTRA 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
